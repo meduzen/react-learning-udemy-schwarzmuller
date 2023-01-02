@@ -1,45 +1,39 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Dialog from './Dialog'
 
-/**
- * @type {EventListenerOptions}
- */
-const onceEvent = { once: true }
-
 const TodoItem = ({ task }) => {
-  const id = `dialog-${(Math.random() * 100000000000).toFixed(0)}`
 
-  const [modalOpen, setmodalOpen] = useState(false)
-  const [modalPrompt, setmodalPrompt] = useState('')
+  // state
 
-  function showModal(prompt, callback) {
-    const $modal = document.getElementById(id)
-    setmodalPrompt(prompt)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalPrompt, setModalPrompt] = useState('')
 
-    $modal.showModal()
-    setmodalOpen(true)
+  // DOM refs
 
-    $modal.addEventListener('close', e => {
-      setmodalOpen(false)
-      const approve = !!Number(e.target.returnValue)
-      if (approve) {
-        callback()
-      }
-    }, onceEvent)
+  const $dialog = useRef(null)
 
-    $modal.addEventListener('cancel', () => setmodalOpen(false), onceEvent)
+  // functions
+
+  function showModal(prompt, confirmCallback) {
+    setModalOpen(true)
+    setModalPrompt(prompt)
+    $dialog.current.showModal(confirmCallback, () => setModalOpen(false))
   }
 
-  const remove = () => {
-    showModal(`Delete task: ${task}`, () => {
-      console.log('should remove here')
-    })
+  const deleteHandler = () => {
+    showModal(`Delete task: ${task}`, deleteTask)
   }
 
-  const done = () => {
-    showModal(`Mark task as completed: <em>${task}</em>`, () => {
-      console.log('should mark as complete here')
-    })
+  const doneHandler = () => {
+    showModal(`Mark task as completed: <em>${task}</em>`, markAsDone)
+  }
+
+  const deleteTask = () => {
+    console.log(`should remove: ${task}`)
+  }
+
+  const markAsDone = () => {
+    console.log(`should mark as done: ${task}`)
   }
 
   return (
@@ -49,10 +43,10 @@ const TodoItem = ({ task }) => {
     `}>
         <h2>{task}</h2>
         <div className="todo__actions">
-            <button type="button" onClick={remove}>delete</button>
-            <button type="button" onClick={done}>done</button>
+            <button type="button" onClick={deleteHandler}>delete</button>
+            <button type="button" onClick={doneHandler}>done</button>
         </div>
-        <Dialog id={id} prompt={modalPrompt}/>
+        <Dialog ref={$dialog} prompt={modalPrompt}/>
     </li>
   )
 }

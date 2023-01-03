@@ -36,7 +36,7 @@ const TodoItem = ({ task }) => {
 
   return (
     <li className="todo">
-        <h2>{task}</h2>
+        <h3>{task}</h3>
         <div className="todo__actions">
             <button type="button" onClick={deleteHandler}>delete</button>
             <button type="button" onClick={doneHandler}>done</button>

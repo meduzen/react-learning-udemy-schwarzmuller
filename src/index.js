@@ -1,11 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import './common.css'
+
 import './1-todos/index.css'
-import App from './1-todos/App'
+import TodosApp from './1-todos/App'
+
+import './2-meetups/index.css'
+import MeetupsApp from './2-meetups/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <App />
+    <h1>Learning React</h1>
+    <TodosApp />
+    <MeetupsApp />
   </React.StrictMode>
 )

@@ -1,9 +1,9 @@
-import './app.css';
-import TodoItem from './TodoItem';
+import './index.css';
+import TodoItem from './components/TodoItem';
 
 const App = () => (
   <div>
-      <h1>My Todos</h1>
+      <h2>My Todos</h2>
       <ul className="todos">
           <TodoItem task="Learn React"/>
           <TodoItem task="Eat lunch"/>

@@ -4,7 +4,7 @@ import Card from '../../components/Card'
 import MeetupItem from './MeetupItem'
 
 const MeetupList = ({ meetups }) => (
-  <ul meetups={meetups} class={styles.ul}>
+  <ul meetups={meetups} className={styles.ul}>
     {meetups.map(meetup =>
       <li key={meetup.id}>
           <Card>

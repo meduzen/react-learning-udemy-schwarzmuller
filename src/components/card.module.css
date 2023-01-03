@@ -3,3 +3,8 @@
   border: .1em solid;
   border-radius: .2em;
 }
+
+.card:hover,
+.card:focus-within {
+  outline: .1em solid;
+}

@@ -20,7 +20,7 @@ body {
     border-radius: .2em;
 }
 
-.todo--modal-visible {
+.todo:has([open]) {
   color: orange;
 }
 

@@ -15,7 +15,7 @@ const Dialog = forwardRef((props, ref) => {
   // Expose this custom `showModal()` below to the parent component.
   useImperativeHandle(ref, () => ({
 
-    showModal(confirmCallback, closeCallback) {
+    showModal(confirmCallback, closeCallback = undefined) {
       $dialog.current.showModal()
 
       $dialog.current.addEventListener('close', e => {
@@ -24,7 +24,9 @@ const Dialog = forwardRef((props, ref) => {
           confirmCallback() // success
         }
 
-        closeCallback() // always run on close
+        if (closeCallback) {
+          closeCallback() // always run on close
+        }
       }, onceEvent)
 
       $dialog.current.addEventListener('cancel', closeCallback, onceEvent)

@@ -5,7 +5,6 @@ const TodoItem = ({ task }) => {
 
   // state
 
-  const [modalOpen, setModalOpen] = useState(false)
   const [modalPrompt, setModalPrompt] = useState('')
 
   // DOM refs
@@ -15,9 +14,8 @@ const TodoItem = ({ task }) => {
   // functions
 
   function showModal(prompt, confirmCallback) {
-    setModalOpen(true)
     setModalPrompt(prompt)
-    $dialog.current.showModal(confirmCallback, () => setModalOpen(false))
+    $dialog.current.showModal(confirmCallback)
   }
 
   const deleteHandler = () => {
@@ -37,10 +35,7 @@ const TodoItem = ({ task }) => {
   }
 
   return (
-    <li className={`
-      todo
-      ${modalOpen && 'todo--modal-visible'}
-    `}>
+    <li className="todo">
         <h2>{task}</h2>
         <div className="todo__actions">
             <button type="button" onClick={deleteHandler}>delete</button>

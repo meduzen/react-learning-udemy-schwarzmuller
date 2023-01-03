@@ -1,4 +1,7 @@
+import { useHistory } from "react-router-dom"
+
 const MeetupCreateForm = ({ onCreate }) => {
+  const history = useHistory()
 
   /**
    *
@@ -11,6 +14,10 @@ const MeetupCreateForm = ({ onCreate }) => {
       method: 'post',
       body: new FormData(e.target)
     })
+      .finally(() => {
+        onCreate()
+        history.replace('/')
+      })
   }
 
   return (

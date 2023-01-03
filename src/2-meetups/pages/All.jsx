@@ -1,31 +1,38 @@
+import { useEffect, useState } from 'react'
 import MeetupsList from '../components/MeetupsList'
 
-const MEETUPS = [
-  {
-    id: 'm1',
-    title: 'This is a first meetup',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Meetupstreet 5, 12345 Meetup City',
-    description:
-      'This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!',
-  },
-  {
-    id: 'm2',
-    title: 'This is a second meetup',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Meetupstreet 5, 12345 Meetup City',
-    description:
-      'This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!',
-  },
-]
+import MEETUPS from '../data/all.json'
 
-const Meetups = () => (
-  <div>
-      <h3>Meetups</h3>
-      <MeetupsList meetups={MEETUPS}/>
-  </div>
-)
+// Simulate remotely fetching meetups…
+const simulateFetch = (setMeetups, setLoading) => setTimeout(() => {
+  setMeetups(MEETUPS)
+  setLoading(false)
+  console.log('Meetups fetched!')
+}, 2000)
+
+const Meetups = () => {
+  const [meetups, setMeetups] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    simulateFetch(setMeetups, setLoading)
+  }, [])
+
+  if (loading) {
+    return (
+      <div>
+          <h3>Meetups</h3>
+          <p>Loading…</p>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+        <h3>Meetups</h3>
+        <MeetupsList meetups={meetups}/>
+    </div>
+  )
+}
 
 export default Meetups

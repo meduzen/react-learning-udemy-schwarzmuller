@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import Dialog from './Dialog'
+import Card from '../../components/Card'
 
 const TodoItem = ({ task }) => {
 
@@ -36,12 +37,14 @@ const TodoItem = ({ task }) => {
 
   return (
     <li className="todo">
-        <h3>{task}</h3>
-        <div className="todo__actions">
-            <button type="button" onClick={deleteHandler}>delete</button>
-            <button type="button" onClick={doneHandler}>done</button>
-        </div>
-        <Dialog ref={$dialog} prompt={modalPrompt}/>
+        <Card>
+            <h3>{task}</h3>
+            <div className="todo__actions">
+                <button type="button" onClick={deleteHandler}>delete</button>
+                <button type="button" onClick={doneHandler}>done</button>
+            </div>
+            <Dialog ref={$dialog} prompt={modalPrompt}/>
+        </Card>
     </li>
   )
 }

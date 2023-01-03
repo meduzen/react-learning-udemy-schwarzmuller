@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Meetups from './pages/All'
 import Favorites from './pages/Favorites'
@@ -9,9 +9,11 @@ import './index.css';
 const App = () => (
   <div>
       <h2>Meetups</h2>
-      <Route path="/meetups"><Meetups/></Route>
-      <Route path="/meetups/favorites"><Favorites/></Route>
-      <Route path="/meetups/new"><NewMeetup/></Route>
+      <Switch>
+          <Route path="/meetups" exact><Meetups/></Route>
+          <Route path="/meetups/favorites"><Favorites/></Route>
+          <Route path="/meetups/new"><NewMeetup/></Route>
+      </Switch>
   </div>
 )
 

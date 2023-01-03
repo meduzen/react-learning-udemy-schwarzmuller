@@ -2,7 +2,7 @@ import './index.css';
 import TodoItem from './components/TodoItem';
 
 const App = () => (
-  <div>
+  <section>
       <h2>My Todos</h2>
       <ul className="todos">
           <TodoItem task="Learn React"/>
@@ -10,7 +10,7 @@ const App = () => (
           <TodoItem task="Meditate"/>
           <TodoItem task="Go to the toilets"/>
       </ul>
-  </div>
+  </section>
 )
 
 export default App

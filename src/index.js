@@ -16,6 +16,8 @@ root.render(
 
       <TodosApp />
 
+      <hr/>
+
       <BrowserRouter>
           <MeetupsApp />
       </BrowserRouter>

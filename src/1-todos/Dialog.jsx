@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react'
-import { onceEvent } from './utils/events'
+import { onceEvent } from '../utils/events'
 
 /**
  * Use native HTML `<dialog>` (https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) to benefit from its show/hide mechanisms, backdrop, focus trap…

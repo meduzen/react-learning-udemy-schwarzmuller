@@ -1,6 +1,6 @@
 const NewMeetup = () => (
   <div>
-      <h1>New Meetup</h1>
+      <h3>New Meetup</h3>
   </div>
 )
 

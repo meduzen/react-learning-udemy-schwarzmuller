@@ -1,23 +1,23 @@
 body {
-    padding: 1em;
+  padding: 1em;
 }
 
 .todos {
-    padding: 0;
+  padding: 0;
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
 .todos li::marker {
-    content: '';
+  content: '';
 }
 
 .todo {
-    padding: 1em;
-    border: .1em solid;
-    border-radius: .2em;
+  padding: 1em;
+  border: .1em solid;
+  border-radius: .2em;
 }
 
 .todo:has([open]) {
@@ -25,10 +25,10 @@ body {
 }
 
 .todo__actions {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: .5em;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: .5em;
 }
 
 dialog::backdrop {

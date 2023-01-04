@@ -1,10 +1,19 @@
-import { useHistory } from "react-router-dom"
+import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import MeetupsContext from '../store/meetups'
+
+/**
+ *
+ * @param {HTMLFormElement} $form
+ * @returns {Object}
+ */
+const formDataToObject = $form => Object.fromEntries(new FormData($form).entries())
 
 const MeetupCreateForm = ({ onCreate }) => {
   const history = useHistory()
+  const meetups = useContext(MeetupsContext)
 
   /**
-   *
    * @param {SubmitEvent} e
    */
   const submit = e => {
@@ -15,19 +24,20 @@ const MeetupCreateForm = ({ onCreate }) => {
       body: new FormData(e.target)
     })
       .finally(() => {
+        meetups.add(formDataToObject(e.target))
         onCreate()
-        history.replace('/')
+        history.replace('/meetups')
       })
   }
 
   return (
     <form method="post" onSubmit={submit}>
         <legend>Add a new meetup</legend>
-        <label htmlFor="meetup-name">
-            Name: <input type="text" id="meetup-name" name="name"/>
+        <label htmlFor="meetup-title">
+            Name: <input type="text" id="meetup-title" name="title"/>
         </label>
-        <label htmlFor="meetup-name">
-            Description: <textarea name="desc" id="meetiup-desc" cols="30" rows="5"></textarea>
+        <label htmlFor="meetup-description">
+            Description: <textarea id="meetup-description" name="description" cols="30" rows="5"></textarea>
         </label>
         <button>Create</button>
     </form>

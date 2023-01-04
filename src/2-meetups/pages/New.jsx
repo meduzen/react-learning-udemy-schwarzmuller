@@ -4,8 +4,9 @@ const celebrateInTheConsole = () => { console.info('New meetup added') }
 
 const NewMeetup = () => (
   <div>
-      <MeetupCreateForm onCreate={celebrateInTheConsole}></MeetupCreateForm>
       <h3>New Meetup</h3>
+      <p>Be inclusive and give enough precision to increase the chance of the meetup to be awesome!</p>
+      <MeetupCreateForm onCreate={celebrateInTheConsole}></MeetupCreateForm>
   </div>
 )
 

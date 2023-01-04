@@ -19,14 +19,23 @@ const MeetupsContext = createContext({
   meetups: [],
   count: 0,
 
+  add: meetup => {},
 })
 
 const MeetupsContextProvider = ({ children }) => {
   const [meetups, setMeetups] = useState([])
 
+  const add = meetup => setMeetups(meetups => meetups.concat({
+    ...meetup,
+    id: (Math.random() * 123456789).toFixed(0),
+    image: 'https://source.unsplash.com/random/700×700',
+    address: '123 Street P-XYZ-987 Somewhere',
+  }))
+
   const context = {
     meetups,
     count: meetups.length,
+    add,
   }
 
   // Simulate remotely fetching meetups…

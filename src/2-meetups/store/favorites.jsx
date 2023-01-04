@@ -1,3 +1,6 @@
+/**
+ * @todo: the store here should probably contain only meetup IDs instead of full Meetup objects, and the `favorites` property should be a derived state from the main meetup store (assuming React has some mechanism for this).
+ */
 import { createContext, useState } from 'react'
 
 const FavoritesContext = createContext({

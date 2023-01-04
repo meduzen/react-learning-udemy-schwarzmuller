@@ -19,3 +19,7 @@ img {
 li::marker {
   content: ''
 }
+
+address {
+  margin-block: .67em;
+}

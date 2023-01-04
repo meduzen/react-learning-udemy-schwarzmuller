@@ -1,24 +1,27 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom'
 
-import MainNavigation from './layout/Navigation';
+import { FavoritesContextProvider } from './store/favorites'
+import MainNavigation from './layout/Navigation'
 import Meetups from './pages/All'
 import Favorites from './pages/Favorites'
 import NewMeetup from './pages/New'
 
-import './index.css';
+import './index.css'
 
 const App = () => (
-  <section>
-      <h2>Meetups</h2>
+  <FavoritesContextProvider>
+      <section>
+          <h2>Meetups</h2>
 
-      <MainNavigation/>
+          <MainNavigation/>
 
-      <Switch>
-          <Route path="/meetups" exact><Meetups/></Route>
-          <Route path="/meetups/favorites"><Favorites/></Route>
-          <Route path="/meetups/new"><NewMeetup/></Route>
-      </Switch>
-  </section>
+          <Switch>
+              <Route path="/meetups" exact><Meetups/></Route>
+              <Route path="/meetups/favorites"><Favorites/></Route>
+              <Route path="/meetups/new"><NewMeetup/></Route>
+          </Switch>
+      </section>
+  </FavoritesContextProvider>
 )
 
 export default App

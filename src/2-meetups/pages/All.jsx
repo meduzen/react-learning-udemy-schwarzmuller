@@ -1,36 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
+import MeetupsContext from '../store/meetups'
+
 import MeetupsList from '../components/MeetupsList'
 
-import MEETUPS from '../data/all.json'
-
-// Simulate remotely fetching meetups…
-const simulateFetch = (setMeetups, setLoading) => setTimeout(() => {
-  setMeetups(MEETUPS)
-  setLoading(false)
-  console.log('Meetups fetched!')
-}, 2000)
-
 const Meetups = () => {
-  const [meetups, setMeetups] = useState([])
-  const [loading, setLoading] = useState(true)
+  const meetups = useContext(MeetupsContext)
 
-  useEffect(() => {
-    simulateFetch(setMeetups, setLoading)
-  }, [])
+  const [loading, setLoading] = useState(!meetups.count)
 
-  if (loading) {
-    return (
-      <div>
-          <h3>Meetups</h3>
-          <p>Loading…</p>
-      </div>
-    )
+  // Simulate waiting remote fetch from Meetups context
+  if (!meetups.count) {
+    setTimeout(() => setLoading(false), 2000)
   }
 
   return (
     <div>
         <h3>Meetups</h3>
-        <MeetupsList meetups={meetups}/>
+        {loading
+          ? <p>Loading…</p>
+          : <MeetupsList meetups={meetups.meetups}/>
+        }
     </div>
   )
 }

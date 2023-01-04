@@ -23,3 +23,8 @@ li::marker {
 address {
   margin-block: .67em;
 }
+
+label {
+  margin-block: .67em;
+  display: block;
+}

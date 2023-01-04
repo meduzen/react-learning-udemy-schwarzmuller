@@ -36,7 +36,7 @@ const Dialog = forwardRef((props, ref) => {
   return (
     <dialog {...props} ref={$dialog}>
         <form method="dialog">
-            <legend>{props.prompt ?? 'Proceed?'}</legend>
+            <legend dangerouslySetInnerHTML={{ __html: props.prompt ?? 'Proceed?'}}></legend>
             <button value="0">Cancel</button>
             <button value="1">Yes</button>
         </form>

@@ -1,13 +1,7 @@
 import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+import { getFormData } from '../../utils/formData'
 import MeetupsContext from '../store/meetups'
-
-/**
- *
- * @param {HTMLFormElement} $form
- * @returns {Object}
- */
-const formDataToObject = $form => Object.fromEntries(new FormData($form).entries())
 
 const MeetupCreateForm = ({ onCreate }) => {
   const history = useHistory()
@@ -24,7 +18,7 @@ const MeetupCreateForm = ({ onCreate }) => {
       body: new FormData(e.target)
     })
       .finally(() => {
-        meetups.add(formDataToObject(e.target))
+        meetups.add(getFormData(e.target))
         onCreate()
         history.replace('/meetups')
       })

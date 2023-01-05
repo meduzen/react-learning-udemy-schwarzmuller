@@ -12,15 +12,14 @@ const Favorites = () => {
   const countDisplay = favorites.count > 1 ? favorites.count : ''
   const pluralizeMeetup = `meetup${favorites.count != 1 ? 's': ''}`
 
-  let title = favorites.count
-    ? <h3>Your {countDisplay} favorite {pluralizeMeetup}</h3>
-    : <h3>You have no favorite meetup, yet. <Link to={'/meetups'}>Go pick some</Link>!</h3>
-
   return (
     <div>
-      {title}
-      {!!favorites.count &&
-        <MeetupsList meetups={favorites.favorites}/>
+      {favorites.count
+        ? (
+          <h3>Your {countDisplay} favorite {pluralizeMeetup}</h3> &&
+          <MeetupsList meetups={favorites.favorites}/>
+        )
+        : (<h3>You have no favorite meetup, yet. <Link to="/meetups">Go pick some</Link>!</h3>)
       }
     </div>
   )

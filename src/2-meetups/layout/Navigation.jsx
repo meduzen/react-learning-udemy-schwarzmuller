@@ -11,9 +11,9 @@ const MainNavigation = () => {
     <header>
         <nav>
             <ul className={styles.ul}>
-              <li className={styles.li}><Link to='/meetups'>All meetups</Link></li>
-              <li className={styles.li}><Link to='/meetups/new'>New</Link></li>
-              <li className={styles.li}><Link to='/meetups/favorites'>Favorites ({favorites.count})</Link></li>
+                <li className={styles.li}><Link to="/meetups">All meetups</Link></li>
+                <li className={styles.li}><Link to="/meetups/new">New</Link></li>
+                <li className={styles.li}><Link to="/meetups/favorites">Favorites ({favorites.count})</Link></li>
             </ul>
         </nav>
     </header>

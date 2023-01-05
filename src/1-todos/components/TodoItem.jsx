@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import Dialog from './Dialog'
 import Card from '../../components/Card'
+import Button from '../../components/Button'
 
 const TodoItem = ({ task }) => {
 
@@ -40,8 +41,27 @@ const TodoItem = ({ task }) => {
         <Card>
             <h3>{task}</h3>
             <div className="todo__actions">
-                <button type="button" onClick={deleteHandler}>delete</button>
-                <button type="button" onClick={doneHandler}>done</button>
+                <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={deleteHandler} disabled
+                >
+                    share
+                </Button>
+                <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={deleteHandler}
+                >
+                    delete
+                </Button>
+                <Button
+                    type="button"
+                    variant="primary"
+                    onClick={doneHandler}
+                >
+                    done
+                </Button>
             </div>
             <Dialog ref={$dialog} prompt={modalPrompt}/>
         </Card>

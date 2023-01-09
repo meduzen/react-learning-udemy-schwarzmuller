@@ -1,11 +1,15 @@
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getFormData } from '../../utils/formData'
 import MeetupsContext from '../store/meetups'
 
+import Dialog from '../../1-todos/components/Dialog'
+
 const MeetupCreateForm = ({ onCreate }) => {
   const history = useHistory()
   const meetups = useContext(MeetupsContext)
+
+  const $dialog = useRef(null)
 
   /**
    * @param {SubmitEvent} e
@@ -18,13 +22,20 @@ const MeetupCreateForm = ({ onCreate }) => {
       body: new FormData(e.target)
     })
       .finally(() => {
-        meetups.add(getFormData(e.target))
+        const meetup = getFormData(e.target)
+
+        if (!meetup.title || !meetup.description) {
+          return $dialog.current.showModal()
+        }
+
+        meetups.add(meetup)
         onCreate()
         history.replace('/meetups')
       })
   }
 
   return (
+    <>
     <form method="post" onSubmit={submit}>
         <legend>Add a new meetup</legend>
         <label htmlFor="meetup-title">
@@ -35,6 +46,8 @@ const MeetupCreateForm = ({ onCreate }) => {
         </label>
         <button>Create</button>
     </form>
+    <Dialog ref={$dialog} prompt="Missing meetup informations" confirm="Close"/>
+    </>
   )
 }
 

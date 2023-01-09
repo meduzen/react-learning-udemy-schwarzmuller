@@ -63,7 +63,7 @@ const TodoItem = ({ task }) => {
                     done
                 </Button>
             </div>
-            <Dialog ref={$dialog} prompt={modalPrompt}/>
+            <Dialog ref={$dialog} prompt={modalPrompt} confirm="Yes" cancel="Cancel"/>
         </Card>
     </li>
   )

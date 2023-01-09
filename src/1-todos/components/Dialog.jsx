@@ -15,12 +15,12 @@ const Dialog = forwardRef((props, ref) => {
   // Expose this custom `showModal()` below to the parent component.
   useImperativeHandle(ref, () => ({
 
-    showModal(confirmCallback, closeCallback = undefined) {
+    showModal(confirmCallback = undefined, closeCallback = undefined) {
       $dialog.current.showModal()
 
       $dialog.current.addEventListener('close', e => {
         const approve = !!Number(e.target.returnValue)
-        if (approve) {
+        if (approve && confirmCallback) {
           confirmCallback() // success
         }
 
@@ -37,8 +37,8 @@ const Dialog = forwardRef((props, ref) => {
     <dialog {...props} ref={$dialog}>
         <form method="dialog">
             <legend dangerouslySetInnerHTML={{ __html: props.prompt ?? 'Proceed?'}}></legend>
-            <button value="0">Cancel</button>
-            <button value="1">Yes</button>
+            {props.cancel && <button value="0">{props.cancel}</button>}
+            <button value="1">{props.confirm}</button>
         </form>
     </dialog>
   )

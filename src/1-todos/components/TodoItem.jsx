@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
-import Dialog from './Dialog'
-import Card from '../../components/Card'
+import Card   from '../../components/Card'
 import Button from '../../components/Button'
+import Dialog from '../../components/Dialog'
 
 const TodoItem = ({ task }) => {
 

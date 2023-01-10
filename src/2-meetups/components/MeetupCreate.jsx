@@ -1,9 +1,10 @@
 import { useContext, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
+
+import Dialog from '../../components/Dialog'
+
 import { getFormData } from '../../utils/formData'
 import MeetupsContext from '../store/meetups'
-
-import Dialog from '../../1-todos/components/Dialog'
 
 const MeetupCreateForm = ({ onCreate }) => {
   const history = useHistory()

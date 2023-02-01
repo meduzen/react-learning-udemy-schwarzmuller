@@ -9,6 +9,8 @@ import TodosApp from './1-todos/App'
 import './2-meetups/index.css'
 import MeetupsApp from './2-meetups/App'
 
+const Footer = React.lazy(() => import('./layout/Footer'))
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
@@ -21,6 +23,10 @@ root.render(
       <BrowserRouter>
           <MeetupsApp />
       </BrowserRouter>
+
+      <React.Suspense fallback="<div>…</div>">
+          <Footer />
+      </React.Suspense>
 
   </React.StrictMode>
 )
